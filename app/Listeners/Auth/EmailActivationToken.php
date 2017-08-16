@@ -29,6 +29,10 @@ class EmailActivationToken
      */
     public function handle(UserRequestedActivationToken $event)
     {
+        if ($event->user->active) {
+            return;
+        }
+        
         Mail::to($event->user)->send(new ActivationTokenEmail($event->user));
     }
 }
