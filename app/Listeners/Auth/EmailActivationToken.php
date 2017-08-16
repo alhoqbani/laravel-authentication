@@ -2,6 +2,8 @@
 
 namespace App\Listeners\Auth;
 
+use Mail;
+use App\Mail\ActivationTokenEmail;
 use App\Events\Auth\UserRegistered;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -26,6 +28,6 @@ class EmailActivationToken
      */
     public function handle(UserRegistered $event)
     {
-        //
+        Mail::to($event->user)->send(new ActivationTokenEmail($event->user));
     }
 }
