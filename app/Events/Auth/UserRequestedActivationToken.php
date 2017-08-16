@@ -6,7 +6,7 @@ use App\User;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
 
-class UserRegistered
+class UserRequestedActivationToken
 {
     use Dispatchable, SerializesModels;
     /**

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Events\Auth\UserRegistered;
+use App\Events\Auth\UserRequestedActivationToken;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -84,7 +84,7 @@ class RegisterController extends Controller
     {
         $this->guard()->logout();
     
-        event(new UserRegistered($user));
+        event(new UserRequestedActivationToken($user));
     
         return redirect()->route('login')
             ->with('success', 'Please check your email for the activation link');

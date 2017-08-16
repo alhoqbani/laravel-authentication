@@ -13,7 +13,7 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\Auth\UserRegistered' => [
+        'App\Events\Auth\UserRequestedActivationToken' => [
             'App\Listeners\Auth\EmailActivationToken',
         ],
     ];
