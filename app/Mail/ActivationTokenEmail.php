@@ -33,6 +33,6 @@ class ActivationTokenEmail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('auth.activation');
+        return $this->markdown('emails.auth.activation');
     }
 }
