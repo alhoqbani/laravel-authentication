@@ -36,4 +36,40 @@ class ResetPasswordController extends Controller
     {
         $this->middleware('guest');
     }
+    
+    /**
+     * Get the response for a successful password reset.
+     *
+     * @param  string  $response
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    protected function sendResetResponse($response)
+    {
+        if (auth()->guest()) {
+            return redirect(route('login'))->with('success', "Password was reset");
+        }
+        
+        return redirect($this->redirectPath())
+            ->with('status', trans($response));
+    }
+    
+    /**
+     * Reset the given user's password.
+     *
+     * @param  \Illuminate\Contracts\Auth\CanResetPassword  $user
+     * @param  string  $password
+     * @return void
+     */
+    protected function resetPassword($user, $password)
+    {
+        $user->forceFill([
+            'password' => bcrypt($password),
+            'remember_token' => str_random(60),
+        ])->save();
+        
+        if ($user->active) {
+            $this->guard()->login($user);
+        }
+    }
+    
 }
