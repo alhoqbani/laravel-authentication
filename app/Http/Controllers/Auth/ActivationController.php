@@ -22,4 +22,9 @@ class ActivationController extends Controller
         return redirect()->route('login')
             ->with('success', 'Thank for activating your account. You can login to your account now');
     }
+    
+    public function resend()
+    {
+        return view('auth.activation.resend');
+    }
 }
