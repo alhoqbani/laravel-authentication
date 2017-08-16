@@ -81,6 +81,7 @@ class RegisterController extends Controller
     {
         $this->guard()->logout();
         
-        return redirect()->route('login');
+        return redirect()->route('login')
+            ->with('success', 'Please check your email for the activation link');
     }
 }
