@@ -72,4 +72,16 @@ class ResetPasswordController extends Controller
         }
     }
     
+    protected function rules()
+    {
+        request()->merge(['password_confirmation' => request('password')]);
+
+        return [
+            'token' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:6',
+        ];
+    }
+    
+    
 }
