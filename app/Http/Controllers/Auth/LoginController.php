@@ -68,6 +68,12 @@ class LoginController extends Controller
      */
     public function username()
     {
+        if (strpos($email = request('username'), '@')) {
+            request()->merge(['email' => $email]);
+
+            return 'email';
+        }
+
         return 'username';
     }
     
