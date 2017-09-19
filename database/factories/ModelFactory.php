@@ -17,8 +17,20 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
     return [
         'name' => $faker->name,
+        'username' => $faker->userName,
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
+        'active' => true,
     ];
 });
+
+$factory->state(\App\User::class, 'active', [
+   'activation_token' => null,
+   'active' => true,
+]);
+
+$factory->state(\App\User::class, 'inActive', [
+    'activation_token' => str_random(150),
+    'active' => false,
+]);
