@@ -30,7 +30,7 @@ $factory->state(\App\User::class, 'active', [
    'active' => true,
 ]);
 
-$factory->state(\App\User::class, 'inActive', [
+$factory->state(\App\User::class, 'inactive', [
     'activation_token' => str_random(150),
     'active' => false,
 ]);
